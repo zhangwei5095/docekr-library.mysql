@@ -1,7 +1,5 @@
 language: bash
-
-# for secret experimental features ;)
-dist: trusty
+services: docker
 
 env:
   - VERSION=5.7
@@ -19,5 +17,8 @@ before_script:
 script:
   - docker build -t "$image" .
   - ~/official-images/test/run.sh "$image"
+
+after_script:
+  - docker images
 
 # vim:set et ts=2 sw=2:
